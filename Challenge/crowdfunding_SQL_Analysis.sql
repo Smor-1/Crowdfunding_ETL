@@ -36,7 +36,26 @@ SELECT * FROM email_contacts_remaining_goal_amount;
 -- end date of the campaign, and the remaining amount of the campaign goal as "Left of Goal". 
 
 
+-- NOTE THAT I AM GIVING 2 ANSWERS HERE BECAUSE I ORDERED THIS BY EMAIL AND IT DOESN'T MATCH 
+-- THE TABLE SHOWED IN THE CHALLENGE, SO HERE'S HOW I WOULD DO BOTH
+
+
+SELECT b.email, b.first_name, b.last_name, b.cf_id, c.company_name, c.description, c.end_date, c.goal - c.pledged as "Left of Goal"
+INTO email_backers_remaining_goal_amount
+FROM backers as b
+INNER JOIN campaign as c
+ON b.cf_id = c.cf_id
+ORDER BY email DESC;
+
+SELECT b.email, b.first_name, b.last_name, b.cf_id, c.company_name, c.description, c.end_date, c.goal - c.pledged as "Left of Goal"
+-- INTO email_backers_remaining_goal_amount
+FROM backers as b
+INNER JOIN campaign as c
+ON b.cf_id = c.cf_id
+ORDER BY last_name;
 
 -- Check the table
+
+SELECT * FROM email_backers_remaining_goal_amount;
 
 
